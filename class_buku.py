@@ -6,7 +6,7 @@ class Buku(KoleksiPerpustakaan):
         self.pengarang = pengarang
 
     def tampilkan_detail(self, nomor):
-        print(f"Koleksi       : {nomor}")
+        print(f"Koleksi {nomor} :")
         print(f"Jenis         : Buku")
         print(f"Kode Koleksi  : {self.kode_koleksi}")
         print(f"Judul         : {self.judul}")
