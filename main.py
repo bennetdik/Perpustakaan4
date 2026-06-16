@@ -1,4 +1,3 @@
-# main.py
 from class_buku import Buku
 from class_jurnal import Jurnal
 from class_majalah import Majalah
