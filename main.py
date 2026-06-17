@@ -1,17 +1,8 @@
 from class_buku import Buku
 from class_jurnal import Jurnal
 from class_majalah import Majalah
+from class_DVD import DVD
 
-# Menambal method abstract dari parent class agar tidak error saat program jalan
-def info_dummy(self):
-    return f"{self.judul}"
-
-Buku.info = info_dummy
-Buku.info_dasar = info_dummy
-Jurnal.info = info_dummy
-Jurnal.info_dasar = info_dummy
-Majalah.info = info_dummy
-Majalah.info_dasar = info_dummy
 
 def main():
     daftar_koleksi = []
@@ -29,9 +20,10 @@ def main():
             print("1. Buku")
             print("2. Jurnal")
             print("3. Majalah")
+            print("4. DVD")
             jenis = input("Pilih jenis koleksi: ")
             
-            if jenis not in ["1", "2", "3"]:
+            if jenis not in ["1", "2", "3", "4"]:
                 print("Jenis koleksi tidak valid.")
                 continue
 
@@ -45,7 +37,7 @@ def main():
             penerbit = input("Masukkan Penerbit: ")
             
             if jenis == "1":
-                baru = Buku(kode, judul, tahun, penerbit, pengarang)
+                baru = Buku(kode, judul, pengarang, tahun, penerbit)
                 daftar_koleksi.append(baru)
                 print("Buku berhasil ditambahkan!")
                 
@@ -63,6 +55,13 @@ def main():
                 daftar_koleksi.append(baru)
                 print("Majalah berhasil ditambahkan!")
                 
+            elif jenis == "4":
+                durasi = input("Masukkan Durasi DVD (menit): ")
+                # Panggil DVD sesuai urutan: judul, tahun_terbit, penerbit, kode_koleksi, durasi
+                baru = DVD(judul, tahun, penerbit, kode, durasi)
+                daftar_koleksi.append(baru)
+                print("DVD berhasil ditambahkan!")
+
         elif pilihan == "2":
             print("\n--- HAPUS KOLEKSI ---")
             if not daftar_koleksi:
@@ -73,7 +72,7 @@ def main():
             ditemukan = False
             
             for koleksi in daftar_koleksi:
-                if hasattr(koleksi, 'kode') and koleksi.kode == kode_hapus:
+                if hasattr(koleksi, 'kode_koleksi') and koleksi.kode_koleksi == kode_hapus:
                     daftar_koleksi.remove(koleksi)
                     print(f"Koleksi dengan Kode {kode_hapus} berhasil dihapus!")
                     ditemukan = True
@@ -88,8 +87,8 @@ def main():
                 print("Perpustakaan masih kosong.")
                 continue
                 
-            for index, koleksi in enumerate(daftar_koleksi, start=1):
-                koleksi.tampilkan_detail(index)
+            for index, koleksiperpustakaan in enumerate(daftar_koleksi, start=1):
+                koleksiperpustakaan.tampilkan_detail(index)
                 print("-" * 45)
                 
         elif pilihan == "4":

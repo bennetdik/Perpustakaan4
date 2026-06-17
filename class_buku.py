@@ -1,9 +1,14 @@
 from koleksi_perpustakaan import KoleksiPerpustakaan
 
 class Buku(KoleksiPerpustakaan):
-    def __init__(self, kode, judul, tahun, penerbit, pengarang):
-        super().__init__(kode, judul, tahun, penerbit)
-        self.pengarang = pengarang
+    def __init__(self, kode, judul, pengarang, tahun_terbit, penerbit):
+        super().__init__(kode, judul, pengarang, tahun_terbit, penerbit)
+
+    def info(self):
+        return f"{self.judul}"
+
+    def info_dasar(self):
+        return super().info_dasar()
 
     def tampilkan_detail(self, nomor):
         print(f"Koleksi Nomor {nomor} :")
